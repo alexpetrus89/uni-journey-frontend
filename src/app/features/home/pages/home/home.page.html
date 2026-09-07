@@ -1,0 +1,111 @@
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-content">
+    <h2>Welcome to <span class="accent">Uni Journey</span></h2>
+    <p class="lead">
+      The intelligent platform for managing students, courses and academic staff.
+    </p>
+    <div class="hero-ctas">
+      <a routerLink="/about" class="btn primary">Find out more</a>
+    </div>
+  </div>
+
+  <div class="hero-visual" aria-hidden="true">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+  </div>
+</section>
+
+<!-- ================= DESCRIPTION ================= -->
+<section class="description-box enhanced-description">
+  <div class="desc-icon"><i class="fa-solid fa-lightbulb"></i></div>
+  <h3><span class="accent">Uni Journey</span></h3>
+  <p>
+    Uni Journey simplifies university life with integrated academic tools.
+  </p>
+</section>
+
+<!-- ================= CARDS ================= -->
+<section class="card-group floating-cards">
+
+  <article class="card accent-card" #card>
+    <div class="card-icon card-logo">
+      <div class="card-inner">
+        <!-- Mini logo -->
+        <i class="fa-solid fa-graduation-cap"></i>
+      </div>
+      <h4>Welcome</h4>
+      <p>Hello {{ userName }}</p>
+      <p class="card-actions">
+        <a (click)="goToProfile()" class="link">Profile</a>
+      </p>
+    </div>
+  </article>
+
+  <article class="card accent-card" #card>
+    <div class="card-icon card-logo">
+      <div class="card-inner">
+        <!-- Mini logo -->
+        <i class="fa-solid fa-right-to-bracket"></i>
+      </div>
+      <h4>Login</h4>
+      <p>Access your personal area.</p>
+      <p class="card-actions">
+        <a routerLink="/login" class="btn small">Login</a>
+      </p>
+    </div>
+  </article>
+
+  <article class="card accent-card" #card>
+    <div class="card-icon card-logo">
+      <div class="card-inner">
+        <!-- Mini logo -->
+        <i class="fa-solid fa-book-open"></i>
+      </div>
+      <h4>Degree courses</h4>
+      <p>Browse the academic catalog.</p>
+      <p class="card-actions">
+        <a routerLink="/catalog" class="link">Go to courses</a>
+      </p>
+    </div>
+  </article>
+
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer animated-footer visible">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h5>Contacts</h5>
+        <ul>
+          <li>
+            <a href="mailto:info&#64;universityapp.com">
+              info&#64;universityapp.com
+            </a>
+          </li>
+          <li>+39 0123 456789</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Follow us</h5>
+        <div class="social-links">
+          <a class="social-icon"><i class="fab fa-facebook-f"></i></a>
+          <a class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+          <a class="social-icon"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <hr class="footer-divider">
+
+    <div class="footer-bottom">
+      &copy; {{ currentYear }} <strong>Uni Journey</strong>
+    </div>
+  </div>
+</footer>
+
+<div id="toast-container"></div>
+

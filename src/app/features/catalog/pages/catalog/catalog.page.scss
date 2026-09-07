@@ -1,0 +1,192 @@
+/*======================================================
+  🧱 RESET & BODY
+  ====================================================== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background-color var(--transition), color var(--transition);
+}
+
+/*======================================================
+  🏠 HEADER
+  ====================================================== */
+.main-header {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.75);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+  z-index: 1000;
+}
+
+html.dark .main-header {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/*======================================================
+  ⚡ HEADER INNER
+  ====================================================== */
+.header-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 0.5px;
+}
+
+/* Dark Mode Toggle */
+.theme-toggle {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: var(--muted);
+  transition: background var(--transition), color var(--transition), transform 0.3s ease;
+}
+
+.theme-toggle:hover {
+  color: var(--primary);
+  transform: rotate(20deg);
+}
+
+html:not(.dark) .theme-toggle:hover {
+  background: rgba(0, 0, 0, 0.05);
+}
+
+html.dark .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/*======================================================
+  📦 CONTAINER & TITLES
+  ====================================================== */
+.container {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 1rem;
+}
+
+.page-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 1.75rem;
+}
+
+/*======================================================
+  🖼 CATALOG GRID & CARDS
+  ====================================================== */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.degree-card {
+  background-color: var(--card);
+  color: var(--text);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color var(--transition), color var(--transition);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.degree-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.degree-card h3 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+/*======================================================
+  🔘 BUTTONS
+  ====================================================== */
+.btn {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+  background-color: #1d4ed8;
+}
+
+.secondary-btn {
+  background-color: #0b5ac8;
+}
+
+.secondary-btn:hover {
+  background-color: #475569;
+}
+
+/*======================================================
+  ⬅️ BACK TO HOME BUTTON
+  ====================================================== */
+.home-link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem auto;
+  width: fit-content;
+  gap: 0.5rem;
+}
+
+/*======================================================
+  🕶 PLACEHOLDER TEXT
+  ====================================================== */
+.placeholder {
+  font-style: italic;
+  color: #6b7280;
+  margin-top: 1rem;
+}
+
+/* ======================================================
+  ✨ ANIMATIONS
+  ====================================================== */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,36 @@
+<!-- ── Main ── -->
+<main class="content-wrapper">
+  <section class="card fade-in">
+
+    <!-- Icona successo -->
+    <div class="success-icon">
+      <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <h1 class="title">Study plan updated!</h1>
+
+    <p class="subtitle">
+      Your changes have been saved successfully.<br/>
+      Redirecting to your study plan in <strong class="countdown">{{ countdown() }}</strong>s...
+    </p>
+
+    <!-- Riepilogo aggiornamento -->
+    <div class="summary-card">
+      <div class="summary-row">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Your study plan has been updated with the new course selection.</span>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="actions">
+      <button class="btn btn-primary" type="button" (click)="goToStudyPlan()">
+        <i class="fa-solid fa-file-lines"></i> View study plan
+      </button>
+      <button class="btn btn-link" type="button" (click)="goHome()">
+        <i class="fa-solid fa-house"></i> Back to home
+      </button>
+    </div>
+
+  </section>
+</main>

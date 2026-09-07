@@ -1,0 +1,59 @@
+<!-- curriculum.page.html -->
+<main class="content-wrapper">
+  <section class="card fade-in">
+
+    <h1 class="title"><i class="fa-solid fa-book-open"></i> {{ degreeCourseName }} — Curriculum</h1>
+
+    <div *ngIf="isLoading()" class="loading-hint">
+      <i class="fa-solid fa-spinner fa-spin"></i> Loading curriculum...
+    </div>
+
+    <div *ngIf="errorMessage()" class="alert error">
+      <i class="fa-solid fa-circle-exclamation"></i> {{ errorMessage() }}
+    </div>
+
+    <ng-container *ngIf="!isLoading() && !errorMessage()">
+      <div class="table-container">
+        <table class="styled-table">
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Course</th>
+              <th>Type</th>
+              <th>CFU</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let course of courses()">
+              <td>{{ course.yearOfStudy }}°</td>
+              <td>{{ course.name }}
+                <span class="badge-core" *ngIf="course.mandatoryCourse" title="Mandatory course">
+                  <i class="fa-solid fa-lock"></i>
+                </span>
+              </td>
+              <td>
+                <span class="badge-type" [ngClass]="course.type.toLowerCase()">
+                  {{ course.type }}
+                </span>
+              </td>
+              <td><strong>{{ course.cfu }}</strong></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="total-row">
+              <td colspan="3"><strong>Total CFU</strong></td>
+              <td><strong>{{ totalCfu() }}</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+
+      <div class="actions">
+        <a routerLink="/catalog" class="btn btn-secondary">
+          <i class="fa-solid fa-arrow-left"></i> Back to catalog
+        </a>
+      </div>
+    </ng-container>
+
+  </section>
+</main>

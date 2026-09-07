@@ -1,0 +1,130 @@
+<main class="registration-wrapper">
+  <div class="registration-card">
+    <h2>Registration</h2>
+
+    <p class="subtitle">Create your account and start your Uni Journey.</p>
+
+    <div *ngIf="errorMessage" class="alert-error">{{ errorMessage }}</div>
+    <div *ngIf="successMessage" class="alert-success">
+      <div>{{ successMessage }}</div>
+      <div *ngIf="successReferenceCode && successReferenceLabel">
+        <strong>{{ successReferenceLabel }}:</strong> {{ successReferenceCode }}
+      </div>
+    </div>
+
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+      <label for="username">Username</label>
+      <input type="text" id="username" formControlName="username" name="username" autocomplete="username"
+        required placeholder="Enter your username">
+      <small *ngIf="getFieldError('username') as error" class="field-error">{{ error }}</small>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" formControlName="password" name="password" autocomplete="new-password"
+        required placeholder="Enter your password">
+      <small *ngIf="getFieldError('password') as error" class="field-error">{{ error }}</small>
+
+      <app-password-rules [passwordControl]="passwordControl"></app-password-rules>
+
+      <label for="confirm">Confirm Password</label>
+      <input type="password" id="confirm" formControlName="confirm" name="confirm" autocomplete="new-password"
+        required placeholder="Confirm your password">
+      <small *ngIf="getFieldError('confirm') as error" class="field-error">{{ error }}</small>
+
+      <label for="firstName">First name</label>
+      <input formControlName="firstName" placeholder="John">
+      <small *ngIf="getFieldError('firstName') as error" class="field-error">{{ error }}</small>
+
+      <label for="lastName">Last name</label>
+      <input formControlName="lastName" placeholder="Doe">
+      <small *ngIf="getFieldError('lastName') as error" class="field-error">{{ error }}</small>
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" formControlName="dob" title="Date of Birth">
+      <small *ngIf="getFieldError('dob') as error" class="field-error">{{ error }}</small>
+
+      <label for="role">Role</label>
+      <select id="role" formControlName="role" title="Select your role">
+        <option value="STUDENT">Student</option>
+        <option value="PROFESSOR">Professor</option>
+        <option value="ADMIN">Admin</option>
+      </select>
+      <small class="field-hint">Available roles stay aligned with the current backend security configuration.</small>
+
+      <label for="fiscalCode">Fiscal Code</label>
+      <input formControlName="fiscalCode" placeholder="Your fiscal code">
+      <small *ngIf="getFieldError('fiscalCode') as error" class="field-error">{{ error }}</small>
+
+      <label for="street">Street</label>
+      <input formControlName="street" placeholder="Your street">
+      <small *ngIf="getFieldError('street') as error" class="field-error">{{ error }}</small>
+
+      <label for="city">City</label>
+      <input formControlName="city" placeholder="Your city">
+      <small *ngIf="getFieldError('city') as error" class="field-error">{{ error }}</small>
+
+      <label for="country">Country</label>
+      <select id="country" formControlName="country" required>
+        <option value="">Select your country</option>
+        <option *ngFor="let c of countries" [value]="c.code">{{ c.name }}</option>
+      </select>
+      <small *ngIf="getFieldError('country') as error" class="field-error">{{ error }}</small>
+
+      <label for="zip">ZIP</label>
+      <input formControlName="zip" placeholder="Your ZIP code">
+      <small *ngIf="getFieldError('zip') as error" class="field-error">{{ error }}</small>
+
+      <label for="phone">Phone</label>
+      <input formControlName="phone" placeholder="+393331234567">
+      <small *ngIf="getFieldError('phone') as error" class="field-error">{{ error }}</small>
+
+      <section *ngIf="isStudentRole" class="student-panel">
+        <h3>Student information</h3>
+
+        <ng-container *ngIf="degreeCourses.length > 0; else manualDegreeCourseInput">
+          <label for="degreeCourseName">Degree course</label>
+          <select id="degreeCourseName" formControlName="degreeCourseName">
+            <option value="">Select your degree course</option>
+            <option *ngFor="let course of degreeCourses" [value]="course.name">
+              {{ course.name }} - {{ course.graduationClass }}
+            </option>
+          </select>
+        </ng-container>
+
+        <ng-template #manualDegreeCourseInput>
+          <label for="degreeCourseName">Degree course</label>
+          <input id="manualDegreeCourseName" formControlName="degreeCourseName" placeholder="Enter your degree course name">
+        </ng-template>
+
+        <small *ngIf="getFieldError('degreeCourseName') as error" class="field-error">{{ error }}</small>
+
+        <label for="ordering">Study plan ordering</label>
+        <input id="ordering" formControlName="ordering" placeholder="ORD270">
+        <small class="field-hint">This value is required for student registration.</small>
+        <small *ngIf="getFieldError('ordering') as error" class="field-error">{{ error }}</small>
+      </section>
+
+      <div class="form-actions">
+        <button type="submit" class="btn primary-btn" [disabled]="isSubmitting">Register</button>
+        <button type="button" class="btn secondary-btn" (click)="resetForm()" [disabled]="isSubmitting">Reset</button>
+      </div>
+
+      <div class="divider"><span>Or</span></div>
+
+      <div class="social-registration">
+        <button class="btn social google" type="button" (click)="registrationWithGoogle()">
+          <i class="fab fa-google"></i> Google
+        </button>
+        <button class="btn social github" type="button" (click)="registrationWithGithub()">
+          <i class="fab fa-github"></i> GitHub
+        </button>
+
+      </div>
+    </form>
+
+    <p class="login-link">
+      Already registered? <a routerLink="/login">Click here</a> to login.
+    </p>
+
+  </div>
+</main>

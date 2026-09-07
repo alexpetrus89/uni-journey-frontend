@@ -1,0 +1,265 @@
+/*======================================================
+  📦 CONTENT WRAPPER
+  ====================================================== */
+.content-wrapper {
+  max-width: 1000px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+/*======================================================
+  🧱 CARD
+  ====================================================== */
+.card {
+  background: var(--card);
+  color: var(--text);
+  border-radius: 18px;
+  padding: 2rem 2.25rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  transition: background var(--transition), color var(--transition), box-shadow 0.3s ease;
+}
+
+/*======================================================
+  🏷 TITLE
+  ====================================================== */
+.title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 1.75rem;
+
+  i {
+    font-size: 1.4rem;
+  }
+}
+
+/*======================================================
+  ⏳ LOADING HINT
+  ====================================================== */
+.loading-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted);
+  font-style: italic;
+  padding: 1rem 0;
+
+  i {
+    color: var(--primary);
+  }
+}
+
+/*======================================================
+  🚨 ALERT
+  ====================================================== */
+.alert {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.alert.error {
+  background-color: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+}
+
+/*======================================================
+  📊 TABLE CONTAINER
+  ====================================================== */
+.table-container {
+  overflow-x: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px;
+
+  thead {
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+
+    th {
+      color: white;
+      text-align: left;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.3px;
+      padding: 14px 16px;
+      text-transform: uppercase;
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid var(--border);
+      transition: background var(--transition);
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.03);
+      }
+    }
+
+    td {
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      vertical-align: middle;
+    }
+  }
+
+  tfoot {
+    .total-row {
+      background: rgba(0, 0, 0, 0.03);
+
+      td {
+        padding: 14px 16px;
+        font-size: 1rem;
+        color: var(--primary);
+      }
+    }
+  }
+}
+
+html.dark .styled-table tbody tr:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+html.dark .styled-table tfoot .total-row {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+/*======================================================
+  🔒 MANDATORY BADGE
+  ====================================================== */
+.badge-core {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 6px;
+  color: var(--primary);
+  font-size: 0.8rem;
+  vertical-align: middle;
+}
+
+/*======================================================
+  🏷 TYPE BADGE (area disciplinare — CourseType)
+  ====================================================== */
+.badge-type {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: capitalize;
+  letter-spacing: 0.3px;
+  color: white;
+  white-space: nowrap;
+
+  // Fallback per valori non mappati
+  background-color: var(--muted);
+}
+
+$course-type-colors: (
+  matematica: #2563eb,
+  fisica: #7c3aed,
+  chimica: #059669,
+  informatica: #0ea5e9,
+  economia: #d97706,
+  disegno: #db2777,
+  idraulica: #0891b2,
+  biologia: #16a34a,
+  ing_meccanica: #b91c1c,
+  ing_gestionale: #ca8a04,
+  ing_elettrica: #f59e0b,
+  ing_civile: #78716c,
+  ing_informatica: #4f46e5,
+  ing_elettronica: #0d9488,
+  ing_ambientale: #15803d,
+  ing_energetica: #ea580c,
+  ing_dei_sistemi: #6366f1,
+  ing_dei_materiali: #9333ea,
+  ing_dei_processi: #0284c7,
+  lingua_straniera: #be185d,
+  altro: #64748b,
+);
+
+@each $type, $color in $course-type-colors {
+  .badge-type.#{$type} {
+    background-color: $color;
+  }
+}
+
+/*======================================================
+  🔘 ACTIONS
+  ====================================================== */
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 12px 22px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  border: none;
+  transition: all 0.25s ease;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+/*======================================================
+  ✨ ANIMATIONS
+  ====================================================== */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/*======================================================
+  📱 RESPONSIVE
+  ====================================================== */
+@media (max-width: 600px) {
+  .card {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+}

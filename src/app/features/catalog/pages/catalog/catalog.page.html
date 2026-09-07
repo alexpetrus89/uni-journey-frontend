@@ -1,0 +1,23 @@
+
+<main class="container fade-in">
+  <h2 class="page-title">
+    Consult the degree course catalog and available study plans
+  </h2>
+
+  <div class="catalog-grid">
+    <div class="degree-card" *ngFor="let course of degreeCourses">
+      <h3>{{ course.name }}</h3>
+      <p><strong>Graduation class:</strong> {{ course.graduationClass }}</p>
+      <p><strong>Duration:</strong> {{ course.duration }} years</p>
+
+      <button class="btn view-btn" [routerLink]="['/catalog/curriculum', course.name]">
+        <i class="fas fa-eye"></i> View study plan
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<a routerLink="/" class="btn secondary-btn home-link">
+    <i class="fas fa-home"></i> Back to home
+</a>

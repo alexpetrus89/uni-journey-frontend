@@ -1,0 +1,123 @@
+<!-- ── Main ── -->
+<main class="content-wrapper">
+  <section class="card fade-in">
+
+    <h1 class="title"><i class="fa-solid fa-pen"></i> Change Study Plan</h1>
+
+    <!-- Loading -->
+    <div *ngIf="isLoading()" class="loading-hint">
+      <i class="fa-solid fa-spinner fa-spin"></i> Loading...
+    </div>
+
+    <!-- Alert errore -->
+    <div *ngIf="errorMessage()" class="alert error">
+      <i class="fa-solid fa-circle-exclamation"></i> {{ errorMessage() }}
+    </div>
+
+    <!-- Alert successo -->
+    <div *ngIf="successMessage()" class="alert success">
+      <i class="fa-solid fa-circle-check"></i> {{ successMessage() }}
+    </div>
+
+    <ng-container *ngIf="!isLoading() && studyPlan() as plan">
+
+      <div class="form-container">
+
+        <!-- ── Corso da rimuovere ── -->
+        <div class="form-group">
+          <label for="courseToRemove">Course to remove</label>
+          <select
+            id="courseToRemove"
+            [(ngModel)]="selectedCourseToRemove"
+            name="courseToRemove"
+            required
+          >
+            <option value="">Select a course to remove</option>
+            <option *ngFor="let c of plan.courses" [value]="c.name" [disabled]="c.mandatoryCourse">
+              {{ c.name }} ({{ c.cfu }} CFU)
+              {{ c.mandatoryCourse ? '🔒' : '' }}
+            </option>
+          </select>
+        </div>
+
+        <!-- ── Corso di laurea del nuovo corso ── -->
+        <div class="form-group">
+          <label for="degreeCourse">Degree course of new course</label>
+          <select
+            id="degreeCourse"
+            [(ngModel)]="selectedDegreeCourse"
+            name="degreeCourse"
+            (change)="onDegreeCourseChange()"
+            required
+          >
+            <option value="">Select a degree course</option>
+            <option *ngFor="let dc of degreeCourses()" [value]="dc.name">
+              {{ dc.name }}
+            </option>
+          </select>
+        </div>
+
+        <!-- ── Corso da aggiungere ── -->
+        <div class="form-group">
+          <label for="courseToAdd">Course to add</label>
+          <select
+            id="courseToAdd"
+            [(ngModel)]="selectedCourseToAdd"
+            name="courseToAdd"
+            [disabled]="!selectedDegreeCourse || availableCourses().length === 0"
+            required
+          >
+            <option value="">
+              {{ selectedDegreeCourse ? 'Select a course to add' : 'Select a degree course first' }}
+            </option>
+            <option *ngFor="let c of availableCourses()" [value]="c.name">
+              {{ c.name }} ({{ c.cfu }} CFU — Year {{ c.yearOfStudy }})
+            </option>
+          </select>
+          <span class="hint" *ngIf="selectedDegreeCourse && availableCourses().length === 0">
+            No available courses for this degree course.
+          </span>
+        </div>
+
+        <!-- ── Actions ── -->
+        <div class="form-actions">
+          <button
+            class="btn btn-primary"
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="isSubmitting()"
+          >
+            <span *ngIf="!isSubmitting()">
+              <i class="fa-solid fa-check"></i> Submit
+            </span>
+            <span *ngIf="isSubmitting()">
+              <i class="fa-solid fa-spinner fa-spin"></i> Saving...
+            </span>
+          </button>
+
+          <button
+            class="btn btn-secondary"
+            type="button"
+            (click)="onReset()"
+            [disabled]="isSubmitting()"
+          >
+            <i class="fa-solid fa-rotate-left"></i> Reset
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ── Link navigazione ── -->
+      <div class="nav-actions">
+        <a routerLink="/study_plan/read" class="btn btn-link">
+          <i class="fa-solid fa-file-lines"></i> Back to Study Plan
+        </a>
+        <a routerLink="/user_student/student-home" class="btn btn-link">
+          <i class="fa-solid fa-house"></i> Back to Home
+        </a>
+      </div>
+
+    </ng-container>
+
+  </section>
+</main>

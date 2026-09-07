@@ -1,0 +1,197 @@
+/* ======================================================
+   ✅ STUDY PLAN SUCCESS — stesso design system
+   ====================================================== */
+
+/* ── Header (identico alle altre pagine) ── */
+.main-header {
+  position: sticky;
+  top: 0;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--border);
+  transition: background var(--transition);
+  z-index: 1000;
+}
+
+:host-context(html.dark) .main-header {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; }
+.brand { font-weight: 800; font-size: 1.3rem; color: var(--primary); }
+
+.theme-toggle {
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  padding: 10px;
+  border-radius: 12px;
+  font-size: 1.2rem;
+  color: var(--muted);
+  transition: background var(--transition), transform 0.3s;
+}
+
+.theme-toggle:hover {
+  color: var(--primary);
+  transform: rotate(20deg);
+  background: rgba(0, 0, 0, 0.05);
+}
+
+:host-context(html.dark) .theme-toggle:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ── Layout ── */
+.content-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 70px);
+  padding: 40px 16px;
+}
+
+.card {
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+  animation: fadeInUp 0.6s ease;
+}
+
+
+/* ── Icona successo ── */
+.success-icon {
+  font-size: 4rem;
+  color: var(--success, #10b981);
+  margin-bottom: 20px;
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+
+/* ── Testi ── */
+.title {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 28px;
+}
+
+.countdown {
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+
+/* ── Summary card ── */
+.summary-card {
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 32px;
+  text-align: left;
+}
+
+.summary-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: var(--text, #1e293b);
+
+  i {
+    color: var(--success, #10b981);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+}
+
+:host-context(html.dark) .summary-card {
+  background: rgba(16, 185, 129, 0.06);
+  border-color: rgba(16, 185, 129, 0.15);
+}
+
+
+/* ── Buttons ── */
+.actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 11px 22px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  color: #fff;
+
+  &:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-link {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+
+  &:hover {
+    background: var(--primary);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+
+/* ── Animations ── */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .card { padding: 32px 20px; }
+  .actions { flex-direction: column; }
+  .btn { justify-content: center; }
+}

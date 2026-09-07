@@ -1,0 +1,128 @@
+<!-- ======================================================
+    HEADER
+    ====================================================== -->
+
+
+<!-- ======================================================
+    MAIN
+    ====================================================== -->
+<main class="container">
+
+  <!-- Hero -->
+  <section class="page-header">
+    <h1>{{ greeting }}, <span class="username-highlight">{{ username() }}</span> 👋</h1>
+    <p class="subtitle">Access all your student tools and personal updates</p>
+  </section>
+
+  <!-- Card Grid -->
+  <section class="card-grid">
+
+    <!-- Study Plan -->
+    <article class="card accent-card study">
+      <div class="card-icon"><i class="fa-solid fa-book-open"></i></div>
+      <h3>Study Plan</h3>
+      <p>View and manage your <a routerLink="/study_plan/read">booklet <span class="arrow">→</span></a></p>
+    </article>
+
+    <!-- Examinations -->
+    <article class="card accent-card exam">
+      <div class="card-icon"><i class="fa-solid fa-file-lines"></i></div>
+      <h3>Examinations</h3>
+      <p>Browse your <a routerLink="/examinations">examinations <span class="arrow">→</span></a></p>
+    </article>
+
+    <!-- Update Info -->
+    <article class="card accent-card info">
+      <div class="card-icon"><i class="fa-solid fa-user-pen"></i></div>
+      <h3>Update Info</h3>
+      <p>Update your <a routerLink="/profile">profile data <span class="arrow">→</span></a></p>
+    </article>
+
+    <!-- Notifications -->
+    <article class="card accent-card notify">
+      <div class="card-icon">
+        <i class="fa-solid fa-bell"></i>
+        <span class="badge" *ngIf="notifications().length > 0">
+          {{ notifications().length }}
+        </span>
+      </div>
+      <h3>Notifications</h3>
+
+      <div class="notification-container">
+        <p class="empty-hint" *ngIf="notifications().length === 0">
+          No new notifications
+        </p>
+        <div
+          class="notification-item"
+          *ngFor="let n of notifications()"
+        >
+          <p>{{ n.message }}</p>
+          <button class="btn-accept" type="button" (click)="markAsRead(n)">
+            <i class="fa-solid fa-check"></i> Accept
+          </button>
+        </div>
+      </div>
+    </article>
+
+    <!-- Logout -->
+    <article class="card accent-card logout">
+      <div class="card-icon"><i class="fa-solid fa-right-from-bracket"></i></div>
+      <h3>Logout</h3>
+      <p>
+        <button class="btn-logout" type="button" (click)="logout()">
+          Log out safely <span class="arrow">→</span>
+        </button>
+      </p>
+    </article>
+
+  </section>
+
+  <!-- Back home -->
+  <div class="form-actions">
+    <a routerLink="/" class="home-link">
+      <i class="fa-solid fa-house"></i> Back to Home
+    </a>
+  </div>
+
+</main>
+
+
+<!-- ======================================================
+    FOOTER
+    ====================================================== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <div class="footer-col">
+        <h5><i class="fa-solid fa-envelope"></i> Contacts</h5>
+        <ul>
+          <li><a href="mailto:info&#64;universityapp.com">info&#64;universityapp.com</a></li>
+          <li><i class="fa-solid fa-phone"></i> +39 0123 456789</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5><i class="fa-solid fa-share-nodes"></i> Follow us</h5>
+        <div class="social-links">
+          <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+        </div>
+      </div>
+
+    </div>
+    <hr class="footer-divider"/>
+    <div class="footer-bottom">
+      <p>&copy; {{ currentYear }} Uni Journey — All rights reserved.</p>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ======================================================
+    TOAST
+    ====================================================== -->
+<div class="toast-container" *ngIf="toastMessage()">
+  <div class="toast">{{ toastMessage() }}</div>
+</div>
