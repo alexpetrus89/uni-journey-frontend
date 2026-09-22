@@ -1,0 +1,20 @@
+.form-actions {
+  text-align: center;
+  margin: 40px 0;
+}
+
+.home-link {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s, transform 0.3s;
+
+  &:hover {
+    background: var(--accent);
+    transform: translateY(-3px);
+  }
+}

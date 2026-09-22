@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: '/api' // in produzione cambierai con l'URL reale del backend
+  apiBaseUrl: '/api/v1' // in produzione cambierai con l'URL reale del backend
 };

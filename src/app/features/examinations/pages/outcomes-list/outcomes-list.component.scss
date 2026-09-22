@@ -1,0 +1,82 @@
+.card-container {
+  display: flex;
+  justify-content: center;
+  margin: 40px 20px;
+}
+
+.card {
+  background-color: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgb(0 0 0 / 10%);
+  padding: 30px;
+  max-width: 700px;
+  width: 100%;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.status-text {
+  text-align: center;
+  color: var(--muted);
+  margin: 20px 0;
+}
+
+.filter-input {
+  width: 100%;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  font-size: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  transition: border-color 0.3s;
+
+  &:focus {
+    border-color: var(--primary);
+    outline: none;
+  }
+}
+
+.appeal-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.appeal-card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 15px;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+
+  &:hover {
+    border-color: var(--primary);
+    transform: translateY(-2px);
+  }
+}
+
+.course {
+  font-weight: 600;
+}
+
+.details {
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: var(--muted);
+}

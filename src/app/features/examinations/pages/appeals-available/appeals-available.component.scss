@@ -1,0 +1,74 @@
+.page-header {
+  text-align: center;
+  margin: 50px auto 20px;
+
+  h1 {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 10px;
+  }
+}
+
+.subtitle {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.status-text {
+  text-align: center;
+  color: var(--muted);
+  margin: 40px 0;
+}
+
+.table-card {
+  max-width: 1000px;
+  margin: 30px auto;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgb(0 0 0 / 8%);
+  padding: 20px;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text);
+}
+
+th,
+td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid var(--border);
+}
+
+th {
+  color: var(--primary);
+  font-weight: 600;
+  background-color: rgb(37 99 235 / 5%);
+}
+
+tr:hover {
+  background-color: rgb(37 99 235 / 8%);
+}
+
+.book-button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: var(--accent);
+    transform: translateY(-2px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+}

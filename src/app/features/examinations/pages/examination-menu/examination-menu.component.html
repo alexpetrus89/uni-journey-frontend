@@ -1,0 +1,16 @@
+<section class="page-header">
+  <h1>Examination menu</h1>
+  <p class="subtitle">Access all your examination-related tools</p>
+</section>
+
+<section class="card-grid">
+  @for (card of cards; track card.routerLink) {
+    <a class="card" [routerLink]="card.routerLink">
+      <div class="card-icon">{{ card.icon }}</div>
+      <h3>{{ card.title }}</h3>
+      <p>{{ card.description }}</p>
+    </a>
+  }
+</section>
+
+<app-back-link routerLink="/user_student/student-home" label="Back to home" />

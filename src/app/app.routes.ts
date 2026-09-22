@@ -100,5 +100,17 @@ export const routes: Routes = [
       import('./features/study_plan/study_plan.routes')
         .then(m => m.STUDY_PLAN_ROUTES)
   },
+/**
+ * Load the children routes for the 'examinations' path.
+ * This will load the routes configured in the 'examinations.routes' file.
+ * The routes are loaded lazily, meaning they are only loaded when the 'examinations' path is navigated to.
+ * @returns {Promise<Routes>} A promise that resolves to the routes for the 'examinations' feature.
+ */
+  {
+    path: 'examinations',
+    loadChildren: () =>
+      import('./features/examinations/examinations.routes')
+        .then(m => m.EXAMINATIONS_ROUTES),
+  }
 ];
 

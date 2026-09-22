@@ -1,0 +1,68 @@
+<section class="card-container">
+  <div class="card">
+    @if (loading()) {
+      <p class="status-text">Loading…</p>
+    } @else if (outcome(); as outcome) {
+      <h1 class="title">📋 Outcome</h1>
+
+      <div class="appeal">
+        <p><strong>Course:</strong> {{ outcome.appeal.course }}</p>
+        <p><strong>Date:</strong> {{ outcome.appeal.date }}</p>
+        @if (outcome.present) {
+          <p><strong>Grade:</strong> {{ outcome.grade }}</p>
+          @if (outcome.withHonors) {
+            <p><strong>With honors 🎓</strong></p>
+          }
+        }
+      </div>
+
+      @switch (result()) {
+        @case ('ABSENT') {
+          <div class="appeal result-block insufficient">
+            <p><strong>Result:</strong> Absent</p>
+            <button type="button" class="btn" [disabled]="submitting()" (click)="confirmResult()">
+              Confirm
+            </button>
+          </div>
+        }
+        @case ('INSUFFICIENT') {
+          <div class="appeal result-block insufficient">
+            <p><strong>Result:</strong> Insufficient</p>
+            <button type="button" class="btn" [disabled]="submitting()" (click)="confirmResult()">
+              Confirm
+            </button>
+          </div>
+        }
+        @case ('FAILED') {
+          <div class="appeal result-block failed">
+            <p><strong>Result:</strong> Failed</p>
+          </div>
+        }
+        @case ('PASSED') {
+          <div class="appeal result-block passed">
+            @if (!confirmingRefusal()) {
+              <button type="button" class="btn" [disabled]="submitting()" (click)="acceptGrade()">
+                Accept grade
+              </button>
+              <button type="button" class="btn btn-secondary" [disabled]="submitting()" (click)="requestRefusal()">
+                Refuse grade
+              </button>
+            } @else {
+              <p class="confirm-text">⚠️ Are you sure you want to refuse this grade?</p>
+              <button type="button" class="btn" [disabled]="submitting()" (click)="confirmRefusal()">
+                Yes, refuse
+              </button>
+              <button type="button" class="btn btn-secondary" [disabled]="submitting()" (click)="cancelRefusal()">
+                Cancel
+              </button>
+            }
+          </div>
+        }
+      }
+    } @else {
+      <p class="status-text">Outcome not found.</p>
+    }
+  </div>
+</section>
+
+<app-back-link routerLink="/user_student/examinations/outcomes" label="Back to list" />

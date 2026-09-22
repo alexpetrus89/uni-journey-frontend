@@ -66,11 +66,11 @@ export class LoginPage implements OnInit {
   }
 
   loginWithGoogle(): void {
-    globalThis.location.href = '/oauth2/authorization/google';
+    globalThis.location.href = API.auth.google;
   }
 
   loginWithGithub(): void {
-    globalThis.location.href = '/oauth2/authorization/github';
+    globalThis.location.href = API.auth.github;
   }
 
 

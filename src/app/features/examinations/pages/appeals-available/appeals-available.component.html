@@ -1,0 +1,48 @@
+<header class="page-header">
+  <h1>📅 Appeals calendar</h1>
+  <p class="subtitle">Browse and book your available examination appeals</p>
+</header>
+
+@if (loading()) {
+  <p class="status-text">Loading…</p>
+} @else if (appeals().length === 0) {
+  <p class="status-text">No appeals available right now.</p>
+} @else {
+  <section class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Degree course</th>
+          <th>Course</th>
+          <th>Professor</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Book</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (appeal of appeals(); track appeal.id) {
+          <tr>
+            <td>{{ appeal.degreeCourse }}</td>
+            <td>{{ appeal.course }}</td>
+            <td>{{ appeal.professorFullName }}</td>
+            <td>{{ appeal.description }}</td>
+            <td>{{ appeal.date }}</td>
+            <td>
+              <button
+                type="button"
+                class="book-button"
+                [disabled]="bookingId() === appeal.id"
+                (click)="book(appeal)"
+              >
+                {{ bookingId() === appeal.id ? 'Booking…' : 'Book' }}
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+}
+
+<app-back-link routerLink="/user_student/examinations" label="Back to menu" />

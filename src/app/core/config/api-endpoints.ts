@@ -8,6 +8,8 @@ export const API = {
     logout:  `${BASE}/auth/logout`,
     me:      `${BASE}/auth/me`,
     profile: `${BASE}/auth/profile`,
+    google: `/oauth2/authorization/google`,
+    github: `/oauth2/authorization/github`
   },
   registration: {
     register: `${BASE}/registration`,

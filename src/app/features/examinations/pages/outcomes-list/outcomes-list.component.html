@@ -1,0 +1,36 @@
+<section class="card-container">
+  <div class="card">
+    <h1 class="title">📋 Select appeal</h1>
+
+    @if (loading()) {
+      <p class="status-text">Loading…</p>
+    } @else if (outcomes().length === 0) {
+      <p class="status-text">No evaluations available yet.</p>
+    } @else {
+      <input
+        type="text"
+        class="filter-input"
+        placeholder="🔍 Search by course, degree or date…"
+        [value]="filterText()"
+        (input)="filterText.set($any($event.target).value)"
+      />
+
+      <div class="appeal-list">
+        @for (outcome of filteredOutcomes(); track outcome.id) {
+          <a class="appeal-card" [routerLink]="['/user_student/examinations/outcomes', outcome.id]">
+            <div class="course">
+              <span>{{ outcome.appeal.degreeCourse }}</span>
+            </div>
+            <div class="details">
+              <span>{{ outcome.appeal.course }}</span> •
+              <span>{{ outcome.appeal.date }}</span>
+            </div>
+            <div class="description">{{ outcome.appeal.description }}</div>
+          </a>
+        }
+      </div>
+    }
+  </div>
+</section>
+
+<app-back-link routerLink="/user_student/examinations" label="Back to menu" />

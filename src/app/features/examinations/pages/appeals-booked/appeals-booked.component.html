@@ -1,0 +1,46 @@
+<header class="page-header">
+  <h1>📅 Appeals booked</h1>
+  <p class="subtitle">Browse and delete your booked examination appeals</p>
+</header>
+
+@if (loading()) {
+  <p class="status-text">Loading…</p>
+} @else if (appeals().length === 0) {
+  <p class="status-text">You have no booked appeals.</p>
+} @else {
+  <section class="table-card">
+    <table>
+      <thead>
+        <tr>
+          <th>Degree Course</th>
+          <th>Course</th>
+          <th>Description</th>
+          <th>Date</th>
+          <th>Delete Reservation</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (appeal of appeals(); track appeal.id) {
+          <tr>
+            <td>{{ appeal.degreeCourse }}</td>
+            <td>{{ appeal.course }}</td>
+            <td>{{ appeal.description }}</td>
+            <td>{{ appeal.date }}</td>
+            <td>
+              <button
+                type="button"
+                class="delete-button"
+                [disabled]="deletingId() === appeal.id"
+                (click)="cancelBooking(appeal)"
+              >
+                {{ deletingId() === appeal.id ? 'Deleting…' : 'Delete' }}
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+}
+
+<app-back-link routerLink="/user_student/examinations" label="Back to menu" />
